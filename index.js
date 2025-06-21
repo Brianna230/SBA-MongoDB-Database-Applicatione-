@@ -4,6 +4,7 @@ import 'dotenv/config'
 
 import db from './models/db.js'
 import ingredients from './models/ingredients.js'
+import users from './models/users.js'
 
 const app = express()
 app.use(express.json());
@@ -53,7 +54,41 @@ app.post('/ingredients',async(req,res)=>{
     const result = await IngredientInfo.save()
     res.json(result)
 })
+app.get('/user',async(req,res)=>{
+    const user = await users.find({})
+    console.log(user)
+    res.json(user)
+})
 
+app.post('/user',async(req,res)=>{
+    console.log(req.body)
+    const usersInfo = new users({
+        name:req.body.name,
+        skinType:req.body.skinType,
+        skinConcerns:req.body.skinConcerns,
+        allergies:req.body.allergies,
+        CreateAt:req.body.CreateAt
+    })
+    const result = await usersInfo.save()
+    res.json(result)
+})
+//Patch route
+app.patch("/ProductName/:id",async(req,res)=>{
+    const productnameUpdate = await db.findByIdAndUpdate(
+        req.params.id,
+        req.body
+    )
+   const resultUpdate = await productnameUpdate.save()
+   res.send(resultUpdate)
+})
+//Delete route
+app.delete("/user/:id",async(req,res)=>{
+    const productnameDelete = await users.findByIdAndDelete(
+        req.params.id,
+        req.body
+    )
+    res.send(productnameDelete)
+})
 app.listen(Port, ()=>{
     console.log(`Server is running on ${Port}`)
 })

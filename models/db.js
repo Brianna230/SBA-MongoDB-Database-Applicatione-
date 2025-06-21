@@ -18,7 +18,6 @@ const skinSchema = new mongoose.Schema({
     },
     PrimaryIngredients:{
        type:String,
-       required:true,
     },
     CreateAt:{
         type:Date,
