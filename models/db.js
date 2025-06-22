@@ -12,12 +12,10 @@ const skinSchema = new mongoose.Schema({
         unique:true,
     },
     TypeofSkincare:{
-        type:String,
-        required:true,
-        unique:true,
+        type:String
     },
     PrimaryIngredients:{
-       type:String,
+       type:[String],
     },
     CreateAt:{
         type:Date,
