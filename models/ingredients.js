@@ -9,8 +9,6 @@ const ingredientsSchema = new mongoose.Schema({
     },
    benefit:{
     type:[String],
-    require:true,
-    unique:true,
     ProductRef:{type:Schema.Types.ObjectId, ref:'db'} // reference the db model/schema
    },
    sensitiveSkin:{

@@ -81,13 +81,42 @@ app.patch("/ProductName/:id",async(req,res)=>{
    const resultUpdate = await productnameUpdate.save()
    res.send(resultUpdate)
 })
-//Delete route
-app.delete("/user/:id",async(req,res)=>{
-    const productnameDelete = await users.findByIdAndDelete(
+app.delete("/ProductName/:id",async(req,res)=>{
+    const productNameDelete = await db.findByIdAndDelete(
         req.params.id,
         req.body
     )
-    res.send(productnameDelete)
+    res.send(productNameDelete)
+})
+//Delete route
+app.delete("/user/:id",async(req,res)=>{
+    const usersDelete = await users.findByIdAndDelete(
+        req.params.id,
+        req.body
+    )
+    res.send(usersDelete)
+})
+app.patch("/user/:id",async(req,res)=>{
+    const usersUpdate = await users.findByIdAndUpdate(
+        req.params.id,
+        req.body
+    )
+    res.send(usersUpdate)
+})
+
+app.patch("/ingredients/:id",async(req,res)=>{
+    const ingredientsUpdate = await ingredients.findByIdAndUpdate(
+        req.params.id,
+        req.body
+    )
+    res.send(ingredientsUpdate)
+})
+app.delete("/ingredients/:id",async(req,res)=>{
+    const ingredientsDelete = await ingredients.findByIdAndDelete(
+        req.params.id,
+        req.body
+    )
+    res.send(ingredientsDelete)
 })
 app.listen(Port, ()=>{
     console.log(`Server is running on ${Port}`)
