@@ -22,5 +22,6 @@ const skinSchema = new mongoose.Schema({
         default: Date.now()
     }
 })
+skinSchema.index({TypeofSkincare:1})
 
 export default mongoose.model('db', skinSchema,'dbs')

@@ -83,16 +83,14 @@ app.patch("/ProductName/:id",async(req,res)=>{
 })
 app.delete("/ProductName/:id",async(req,res)=>{
     const productNameDelete = await db.findByIdAndDelete(
-        req.params.id,
-        req.body
+        req.params.id
     )
     res.send(productNameDelete)
 })
 //Delete route
 app.delete("/user/:id",async(req,res)=>{
     const usersDelete = await users.findByIdAndDelete(
-        req.params.id,
-        req.body
+        req.params.id
     )
     res.send(usersDelete)
 })
@@ -113,11 +111,11 @@ app.patch("/ingredients/:id",async(req,res)=>{
 })
 app.delete("/ingredients/:id",async(req,res)=>{
     const ingredientsDelete = await ingredients.findByIdAndDelete(
-        req.params.id,
-        req.body
+        req.params.id
     )
     res.send(ingredientsDelete)
 })
+
 app.listen(Port, ()=>{
     console.log(`Server is running on ${Port}`)
 })

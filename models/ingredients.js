@@ -13,7 +13,7 @@ const ingredientsSchema = new mongoose.Schema({
    },
    sensitiveSkin:{
     type:Boolean,
-    safeForsensitiveSkin:true
+    default: false
    },
    CreateAt:{
      type:Date,
