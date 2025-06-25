@@ -38,7 +38,7 @@ app.post('/Products', async(req,res)=>{
 })
 
 app.get('/ingredients',async(req,res)=>{
-    const ingredient = await ingredients.find({}).populate("ProductRef")
+    const ingredient = await ingredients.find({})
     console.log(ingredient)
     res.json(ingredient)
 })
