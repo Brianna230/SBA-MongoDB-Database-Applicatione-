@@ -18,13 +18,13 @@ app.get('/',(req,res)=>{
     res.send('Hello World')
 })
 
-app.get('/ProductName', async(req,res)=>{
+app.get('/Products', async(req,res)=>{
     const ProductName = await db.find({})
     console.log(ProductName)
     res.json(ProductName)
 })
 
-app.post('/ProductName', async(req,res)=>{
+app.post('/Products', async(req,res)=>{
    console.log(req.body)
    const ProductNameInfo = new db({
     ProductName:req.body.ProductName,
@@ -38,7 +38,7 @@ app.post('/ProductName', async(req,res)=>{
 })
 
 app.get('/ingredients',async(req,res)=>{
-    const ingredient = await ingredients.find({})
+    const ingredient = await ingredients.find({}).populate("ProductRef")
     console.log(ingredient)
     res.json(ingredient)
 })
@@ -54,13 +54,13 @@ app.post('/ingredients',async(req,res)=>{
     const result = await IngredientInfo.save()
     res.json(result)
 })
-app.get('/user',async(req,res)=>{
+app.get('/users',async(req,res)=>{
     const user = await users.find({})
     console.log(user)
     res.json(user)
 })
 
-app.post('/user',async(req,res)=>{
+app.post('/users',async(req,res)=>{
     console.log(req.body)
     const usersInfo = new users({
         name:req.body.name,
@@ -73,7 +73,7 @@ app.post('/user',async(req,res)=>{
     res.json(result)
 })
 //Patch route
-app.patch("/ProductName/:id",async(req,res)=>{
+app.patch("/Products/:id",async(req,res)=>{
     const productnameUpdate = await db.findByIdAndUpdate(
         req.params.id,
         req.body
@@ -81,20 +81,20 @@ app.patch("/ProductName/:id",async(req,res)=>{
    const resultUpdate = await productnameUpdate.save()
    res.send(resultUpdate)
 })
-app.delete("/ProductName/:id",async(req,res)=>{
+app.delete("/Products/:id",async(req,res)=>{
     const productNameDelete = await db.findByIdAndDelete(
         req.params.id
     )
     res.send(productNameDelete)
 })
 //Delete route
-app.delete("/user/:id",async(req,res)=>{
+app.delete("/users/:id",async(req,res)=>{
     const usersDelete = await users.findByIdAndDelete(
         req.params.id
     )
     res.send(usersDelete)
 })
-app.patch("/user/:id",async(req,res)=>{
+app.patch("/users/:id",async(req,res)=>{
     const usersUpdate = await users.findByIdAndUpdate(
         req.params.id,
         req.body
